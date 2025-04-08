@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .contenedor{background-color: yellow};
+
+        .lista{
+            color:blue;
+        }
+
+        .dest{
+            font-weight: bolder;
+            color:red;
+        }
+
+        .elem{
+            font-style: italic;
+        }
+
+        h1{ background-color: cyan}
+         
+    </style>
+    <title>DOM</title>
+</head>
+<body>
+    <h1>Selectores de elementos del DOM</h1>
+    <br/>
+    <p id="p1" class="elem">
+        <span>Días de la semana</span>
+    </p>
+    <p class="elem2"><span>Yo que sé</span></p>
+    <div class="contenedor">
+        <ul class = "lista">
+            <li class="elem dest">Lunes</li>
+            <li class="elem">Martes</li>
+            <li class="elem dest">Miércoles</li>
+            <li class="elem">Jueves</li>
+            <li class="elem">Viernes</li>
+            <li class="elem dest">Sábado</li>
+            <li class="elem dest">Domingo</li>            
+        </ul>
+    </div>
+    
+
+    <script>
+        const lista = document.querySelectorAll("li.elem");
+        for(let i = 0; i < lista.length;i++){
+            lista[i].textContent = (i + 1) + " - " + lista[i].textContent;
+            
+        }
+        
+        //Otra forma
+        const l2 = document.getElementsByClassName("lista");
+        const hijos = l2[0].children;
+        for(let i = 0; i < l2[0].childElementCount; i++){
+            console.log(hijos[i].textContent);
+        }
+
+        //Añadimos octavo día
+        //1º Crear el nodo
+        const nuevoDia = document.createElement("li");
+        nuevoDia.textContent="Octudo";
+        
+        const uln = document.getElementsByClassName("lista");
+        uln[0].appendChild(nuevoDia);
+
+        const nuevoDia2 = document.createElement("li");
+        nuevoDia2.textContent="Primodu";
+        const hijoPrimer = uln[0].firstElementChild.nextElementSibling;
+        uln[0].insertBefore(nuevoDia2, hijoPrimer);
+
+
+
+        
+        
+        //console.log(document.getElementById("p1").firstElementChild.innerHTML);
+
+
+        /*const li1 = document.getElementsByClassName("elem");
+        console.log("Nodos seleccionaod con ClassName: " + li1.length);
+        for(let i = 0; i < li1.length; i++){
+            console.log(li1[i].textContent);
+        }
+
+        const li2 = document.querySelectorAll("li.elem");
+        console.log("Nodos seleccionaod con querrySelectorAll: " + li2.length);
+        for(let i = 0; i < li2.length; i++){
+            console.log(li2[i].textContent);
+        }
+
+        const li3 = document.querySelectorAll("div li.elem");
+        console.log("Nodos seleccionaod con querrySelectorAll PLUS: " + li3.length);
+        for(let i = 0; i < li3.length; i++){
+            console.log(li3[i].textContent);
+        }*/
+
+        
+    </script>
+</body>
+</html>

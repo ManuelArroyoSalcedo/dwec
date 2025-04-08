@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON y assign</title>
+</head>
+<body>
+    <script>
+        const arti1 = '{"id":1,"nombre":"raton","marca":"logitech","precio":15}';
+        let objArti1 = JSON.parse(arti1);
+
+        console.log(objArti1.nombre);
+
+        class Articulo{
+            getId(){
+                return this.id;
+            };
+
+            dameDatos(){
+                return this.id + ":"+ this.nombre +":"+ this.marca;
+            };
+        };
+
+        const articulo1 = new Articulo();
+        Object.assign(articulo1, objArti1);
+        
+        console.log(articulo1.dameDatos());
+
+        const articulos = `[
+            {"nombre": "Ana", "edad":20},
+            {"nombre": "Juan", "edad":19},
+            {"nombre": "Pedro", "edad":22}
+        ]`;
+        let datos = JSON.parse(articulos);
+        console.log("Número de datos en la cadena JSON: "+ datos.length);
+        //forma 1
+        console.log(datos[1]["nombre"]);
+
+        //forma 2
+        let usu = datos[1];
+        console.log(usu.nombre + ":" + usu.edad);
+
+
+         class PersJSON{
+            nElem(){
+                return this.length;
+            };
+
+         };
+
+         const objDatos = new PersJSON();
+         Object.assign(objDatos, datos);
+         console.log(objDatos.nElem());
+         console.log(objDatos[0].nombre);
+
+    </script>
+    
+</body>
+</html>

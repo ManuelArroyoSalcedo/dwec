@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creación de objetos</title>
+</head>
+<body>
+    <h1>Creación de objetos</h1>
+
+    <script>
+        //Forma 1. Notación literal
+        const Articulo = {
+            nombre: "Libro",
+            precio: 10,
+            dameDatos: function(){
+                return this.nombre + "," + this.precio;
+            }
+        };
+
+        console.log(Articulo.dameDatos());
+        console.log(Articulo.nombre);
+
+        //Podemos añadir atributos y funciones
+        Articulo.id = 1;
+        Articulo.dameTodo = function(){
+            return this.nombre + "," + this.precio + "," + this.id;
+        }
+
+        console.log(Articulo.dameTodo());
+
+        //Forma 2. Con new Object()
+        const Ficha = new Object();
+        Ficha.id = 100;
+        Ficha.nombre = "Fulano de Tal";
+        Ficha.suma = function(a, b = 0){
+            return a + b;
+        };
+
+        console.log(Ficha.suma(3,6));
+
+        //Forma 3. Función constructora
+        function Alquiler(matricula, cliente){
+            this.matricula = matricula;
+            this.cliente = cliente;
+            this.dameDatos = function(){
+                return this.matricula + ","+this.cliente;
+            };
+            
+            return this.matricula + ","+this.cliente;
+        };
+
+        const alq1 = new Alquiler("4114HJK", "Fulano de Tal");
+        console.log("+++" + alq1.dameDatos());
+
+        console.log(Alquiler("kkkkk", "************"));
+
+        //forma 4. Utilizando ES6
+        class Ordenador{
+            constructor(proc, ram){
+                this.procesador = proc;
+                this.ram = ram;
+            }
+
+            dameDatos(){
+                return this.procesador + "," + this.ram;
+            };
+        };
+         const eq1 = new Ordenador("i5",8);
+         console.log(eq1.dameDatos());
+
+         //Objeto creado con ES6 sin constructor
+         class Impresora{
+            saluda(){
+                return "Soy una impresora";
+            }
+         };
+         const imp1 = new Impresora();
+         console.log(imp1.saluda());
+
+         //Objeto creado con ES6 con atributos pero que 
+         // no se inicializan al ser creado.
+         class Monitor{
+            //Creamos el constructor con parámetros por defecto
+            constructor(nombre = null,tipo = undefined, precio = 0){
+                this.marca = nombre;
+                this.tipo = tipo;
+                this.precio = precio;
+            }
+
+            setMarca(marca){
+                this.marca = marca;
+            };
+
+            setTipo(tipo){
+                this.tipo = tipo;
+            };
+
+            dameDatos(){
+                return this.marca + "," + this.tipo + "," + this.precio;
+            }
+         };
+         const mon1 = new Monitor();
+         mon1.setMarca("Canon");
+         mon1.setTipo("Láser");
+         console.log(mon1.dameDatos());
+
+         //Forma 5. Usando Object.create
+         const obj = Object.create(Articulo);
+         console.log(obj.dameDatos());
+
+         obj.lugar = "aula1";
+         obj.dameDatos = function(){
+            return this.nombre + "," + this.precio + "," + this.lugar;
+         };
+
+         console.log(obj.dameDatos());
+         console.log("-------------------");
+         const alq2 = new Alquiler("0000HJK", "Menganito");
+         const obj2 = Object.create(alq2);
+         console.log(obj2.dameDatos());
+
+
+         const obj3 = Object.create(eq1);
+         /*obj3.procesador = "i9";
+         obj3.ram = 64;
+         obj3.dameDatos = function(){
+                return this.procesador + "," + this.ram;
+         };*/
+
+         console.log(obj3.dameDatos());
+
+         console.log(obj3.isprototypeOf());
+         //console.log(Object.prototype);
+
+    </script>
+    
+</body>
+</html>

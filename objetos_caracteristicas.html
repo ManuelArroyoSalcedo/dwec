@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>características en la POO</title>
+</head>
+<body>
+    <script>
+    //Implementación de la herencia con ES6
+        //Clase padre
+        class Articulo{
+            constructor(id, tipo){
+                this.id = id;
+                this.tipo = tipo;
+            };
+            dameDatos(){
+                return this.id + ","+ this.tipo;
+            }
+        };
+
+        //Clase hija
+        class Libro extends Articulo{
+            constructor(titulo, autor, id, tipo){
+                super(id,tipo);
+                this.titulo = titulo;
+                this.autor = autor;
+            };
+
+            dameDatos(){
+                return super.dameDatos() + this.titulo + "," + this.autor + " - " + this.id;
+            };
+        };
+
+
+        let lib01 = new Libro("Silmarillon", "Tolkien, J.R.R.", 1, "libro");
+        console.log(lib01.dameDatos());
+
+        let art01 = new Articulo(10, "calcetín");
+        console.log(art01.dameDatos());
+
+        //Ejercicio
+        //Crear una clase padre llamada módulo que tenga los atributos 
+        //curso, que puede ser 1 o 2, y ciclo, que puede ser GM o GS.Articulo y 
+        //el método dameInfo que devuela una cadena con el calor de los datos separados por punto y coma.
+        //Crear una clase hija que herede de la clase creada anteriormente que contenga los atributos
+        //titulación, que puede ser SMR, ASIR, DAM o DAW y el profesor que la imparte.
+        //Sobreescribir el método dameInfo para que muestre el valor de todos los atributos separados por punto y coma.
+
+    //Implementación de la herencia con Object.create
+    const fruta ={
+        color : "amarillo",
+        nombre: "platano",
+        dameDatos: function(){
+            return this.nombre + ";" + this.color + ";" + this.estacion;
+        }, 
+        estacion: null,
+        ponDatos: function(nombre, color, estacion){
+            this.nombre = nombre;
+            this.color = color;
+            this.estacion = estacion;
+        }
+    };
+    console.log(fruta.dameDatos());
+
+    const sandia = Object.create(fruta);
+    sandia.nombre = "Sandía";
+    sandia.color = "verde";
+    sandia.estacion = "Verano";
+
+    console.log(sandia.dameDatos());
+
+    //¿Se puede utilizar la herencia con Object.create utilizando la 
+    //falsa clase Articulo
+    const disco = Object.create(Articulo);
+    disco.id = 3;    
+    disco.tipo = "DVD";
+    //console.log(disco.dameDatos());  da error
+
+    const disc01 = Object.create(new Articulo(3, "DVD"));
+    console.log(disc01.dameDatos());      
+
+    
+    //Encapsulamiento
+    //Forma 1
+    class Equipo{
+        constructor(nom, gen){
+            this._nombre = nom;
+            this._genero = gen
+        };
+    };
+    
+    //Forma 2. Enclosures (a partir de ES6)
+    function Videojuego(nombre,plataforma){
+        let _nombre = nombre;
+        let _plata = plataforma;
+        return {
+            getNombre: ()=> _nombre,
+            setNombre: (nueNombre) => { _nombre = nueNombre},
+            getPlataforma: ()=> _edad,
+            setPlataforma: (nuePlata) => { _plata = nuePlata},
+            dameDatos: () => _nombre + ";" + _plata
+        };
+    };
+
+    const Jedi1 = Videojuego("Jedi The orden Fallen", "PS4");
+    console.log(Jedi1.dameDatos());
+    //console.log(Jedi1._nombre);
+
+    //Forma 3. Con ES6 poniendo almuadillas #
+    class Alumno{
+        #nombre;
+        #edad;
+
+        constructor(nombre, edad){
+            this.#nombre = nombre;
+            this.#edad = edad;
+        };
+        getNombre(){
+            return this.#nombre;
+        };
+
+        setNombre(nombre){
+            this.#nombre = nombre;
+        };
+        getEdad(){
+            return this.#edad;
+        };
+
+        setEdad(edad){
+            this.#edad = edad;
+        };        
+
+        dameDatos(){
+            return this.#nombre + ";" + this.#edad;
+        }
+
+    };
+
+    const juanito = new Alumno("Juan Palomo", 99);
+    console.log(juanito.dameDatos());
+    console.log(juanito.nombre);
+
+    </script>
+    
+</body>
+</html>

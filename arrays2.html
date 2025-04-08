@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios de arrays</title>
+</head>
+<body>
+    
+
+    <script>
+        class Matriz{
+            matriz = [];
+            constructor(matriz = []){
+                if(matriz.length>0){
+                    this.cargaMatriz(matriz);        
+                }
+
+            }
+
+            cargaMatriz(matriz){
+                let filas = matriz.length;
+                let vector;
+                let aux;
+                for(let i = 0; i < filas; i++){
+                    vector = matriz[i];
+                    aux = [];
+                    for(let j = 0; j < vector.length; j++){
+                        aux[j] = vector[j];
+                    }
+                    this.matriz[i] = aux;
+                }
+            }
+
+            dameElMenor(){
+                let menor;
+                let coordenadas = null;
+                if(this.matriz.length > 0){
+                    //menor = this.matriz[0][0];
+                    menor = Number.MAX_SAFE_INTEGER;
+                    //console.log(menor);
+                    for(let i = 0; i < this.matriz.length;i++){
+                        for(let j = 0; j < this.matriz[0].length; j++){
+                            if((this.matriz[i][j]!=null)&&(this.matriz[i][j] < menor)){
+                                menor = this.matriz[i][j];
+                                coordenadas = { fila: i, columna :j};
+                            } 
+
+                        }
+                    }
+                }
+                console.log("El menor es:" + menor);
+                return coordenadas;
+            }
+
+
+            numeroElem(){
+                return this.matriz.length;
+            }
+
+            ver(){
+                console.table(this.matriz);
+            }
+
+            ordenaMatriz(){
+                //Creamos una matriz vacía
+                let nuevaMatriz = [];
+                for(let i = 0; i < this.matriz.length; i++) 
+                      nuevaMatriz[i] = new Array(this.matriz[0].length);
+
+                let coordenadas = null;
+                for(let i = 0; i < nuevaMatriz.length; i++){
+                    for(let j = 0; j < nuevaMatriz[0].length; j++){
+                        coordenadas = this.dameElMenor();
+                        nuevaMatriz[i][j] = this.matriz[coordenadas.fila][coordenadas.columna];
+                        this.matriz[coordenadas.fila][coordenadas.columna] = null;
+                    }
+                }
+                //console.table(nuevaMatriz);
+                this.matriz = nuevaMatriz;
+            }
+        }
+
+
+        //Array
+        let prueba = [[1,0,5,9],[1,2,3,4],[10,13,4,5]];
+
+        let miMatriz = new Matriz(prueba);
+        miMatriz.ver();
+        //console.log("Hay " + miMatriz.numeroElem());
+        console.log(miMatriz.dameElMenor());
+console.log("--------------------");
+        miMatriz.ordenaMatriz();
+        miMatriz.ver();
+
+
+    </script>
+</body>
+</html>

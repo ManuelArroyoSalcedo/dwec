@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON</title>
+</head>
+<body>
+    <script>
+
+        //Armazón
+        const Estructura01 ={
+            getNombre(){
+                return this.nombre;
+            },
+            mayorEdad(){
+                return (this.edad > 17);
+            }
+
+        };
+
+        //JSON sencillo
+        const json_sencillo = '{"nombre": "Paco", "edad":45, "lugar": "IES Enrique Tierno Galván de Madrid"}';
+        const persona = JSON.parse(json_sencillo);
+        console.table(persona);
+        //Acceso a un dato
+        console.log(persona["nombre"]);
+        console.log(persona.nombre);
+
+        console.log("-------------------------------------------------");
+
+        //JSON compuesto
+        const json_compuesto = `[
+            {"nombre": "Paco", "edad":45, "lugar": "IES Enrique Tierno Galván de Madrid"},
+            {"nombre": "Ana", "edad":23, "lugar": "IES La Arboleda"},
+            {"nombre": "Miguel", "edad":34, "lugar": "IES Juan de la Cierva"}
+        ]`;
+
+        const personas = JSON.parse(json_compuesto);
+        console.table(personas);
+
+        //Acceso a un dato
+        console.log("1. " + personas[2]["nombre"]);
+        let perso = personas[2];
+        console.log("2. " + perso["nombre"]);
+        console.log("3. " + perso.nombre);
+        let nPersonas = personas.length;
+        for(let i = 0; i < nPersonas; i++) {
+            console.log(i + ". " + personas[i]["nombre"] +", "+personas[i]["edad"] +", "+personas[i]["lugar"]);
+            Object.setPrototypeOf(personas[i],Estructura01);
+        }
+
+        console.log(personas[2].getNombre());
+
+
+        //Asignamos el prototipo directamente al objeto Arry que contiene los objetos "persona"
+        const person2 = JSON.parse(json_compuesto);
+
+        const miPrototipo2 = {
+            saludo() {
+                console.log("Hola Mundo");
+            },
+            primerNombre(){
+                return this[0].nombre;
+            },
+            getPersona(fila){
+                return this[fila];
+            },
+            nDatos(fila){
+                return Object.keys(this[fila]).length;
+            }
+
+
+        };
+
+        Object.setPrototypeOf(person2, miPrototipo2);
+        person2.saludo();
+        console.log(person2.primerNombre());
+        let per;
+        per = person2.getPersona(1);
+        console.log(per.nombre + "-" + per.edad + "->" + per.length);
+        
+        Object.keys(per).forEach(clave => {
+               console.log(clave + "-> " + per[clave]);
+            }    
+        );
+
+        let p = Object.keys(per);
+        for(let i = 0; i < p.length;i++){
+            console.log(p[i]);
+        }
+
+        console.log(person2.nDatos(1));
+
+
+    </script>
+    
+</body>
+</html>

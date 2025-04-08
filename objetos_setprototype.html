@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fusionar cadenas JSON con prototipos</title>
+</head>
+<body>
+    <script>
+        //Otro enfoque, es tener un objeto con datos pero sin ningún método
+        //y añadile los métodos que se quiera utilizando setPrototype.
+
+        //DATOS
+        const cadena = '{"nombre": "Paco", "edad":45, "lugar": "IES Enrique Tierno Galván de Madrid"}';
+        let datos = JSON.parse(cadena);
+
+        //Armazón
+        const Estructura01 ={
+            getNombre(){
+                return this.nombre;
+            },
+            mayorEdad(){
+                return (this.edad > 17);
+            }
+
+        };
+
+        Object.setPrototypeOf(datos, Estructura01);
+        console.log(datos.getNombre());
+        if(datos.mayorEdad){
+            console.log(`${datos.getNombre()} es mayor de edad.`);
+        }else{
+            console.log(`${datos.getNombre()} es menor de edad.`);
+        }
+        
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implementación de características POO 2 - Polimorfismo</title>
+</head>
+<body>
+    <h1>Implementación de características POO 2</h1>
+    <br/>
+    <br/>
+    <script>
+
+        class Prue{
+            hazAlgo(a, b = 4){
+                return a + b;
+            }
+        };
+        const prue = new Prue();
+        console.log(prue.hazAlgo("hola"));
+        console.log(prue.hazAlgo("hola", " Juanito"));
+        console.log(prue.hazAlgo(123));
+        console.log(prue.hazAlgo(1,2));
+
+
+        class Prueba2{
+            vulcano(){
+                let nArgus = arguments.length;
+                console.log("El número de argumentos es: " + nArgus);
+                //for(let i = 0; i < nArgus; i++) console.log(arguments[i]);
+                switch (nArgus){
+                    case 0: console.log("No has escrito naaaa");
+                            break;
+                    case 1: console.log("Mas metío el parámetro: " + arguments[0]);
+                            break; 
+                    case 2: console.log(arguments[0] + arguments[1]);
+                            break;              
+
+                }            
+            }
+        }
+
+        const prueba2 = new Prueba2();
+        prueba2.vulcano(1);
+
+        //Abstracción
+        class Persona {
+            constructor(id){
+                if(new.target===Persona){
+                    throw new Error("Esta es una clase abstracta y no se puede instanciar.");    
+                }
+                this.id = id;
+            };
+
+            dameDatos(){
+                throw new Error("Se debe sobreescribir este método.");
+            };
+        };
+
+        //const personita = new Persona(100);
+        
+        class Alumno extends Persona{
+            constructor(id, nombre){
+                super(id);
+                this.nombre = nombre;
+            };
+
+            dameDatos(){
+                return this.id +":"+ this.nombre;
+            }    
+            getNombre(){
+                return this.nombre;
+            };
+        }
+        
+        const ana = new Alumno(14, "Ana");
+        console.log(ana.getNombre());
+        console.log(ana.dameDatos());
+
+    </script>
+    
+</body>
+</html>

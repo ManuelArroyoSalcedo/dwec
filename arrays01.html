@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>repaso Arrays</title>
+</head>
+<body>
+    <script>
+        let nelem;
+        let nelem2;
+        //Vector
+        const ar1 = ["nombre", "apellidos", "direccion"];
+        nelem = ar1.length;
+        for(let i =0; i < nelem; i++){
+            console.log(ar1[i]);
+        }
+
+        //Matriz Forma 1
+        const ar2 = [ 
+            ["nombre", "apellidos", "Edad", "Opcional"],
+            ["Juan", "López", 18, "Gamer"],
+            ["Ana", "Aparicio", 19],
+            ["Miguel", "García", 18]
+        ];
+        let resul = "";
+        console.log("Matriz Forma 1");
+        nelem = ar2.length;
+        for(let i = 0; i < nelem; i++){
+            nelem2 = ar2[i].length;
+            for(let j = 0; j < nelem2; j++){
+                resul = resul + " " + ar2[i][j];
+            }
+            console.log(resul);
+            resul = "";
+        }
+        //Matriz Forma 2
+        console.log("Matriz Forma 2");
+        resul = "";
+        nelem = ar2.length;
+        let filaAr;
+        for(let i = 0; i < nelem; i++){
+            filaAr = ar2[i];
+            
+            nelem2 = filaAr.length;
+            for(let j = 0; j < nelem2; j++){
+                resul = resul + " " + filaAr[j];
+            }
+            console.log(resul);
+            resul = "";
+        }
+
+        //Buscar un elemento en un array
+        //Crear una función que reciba un vector y un elemento.
+        //La función debe devolver la posición que ocupa si existe
+        //y null si no existe ese valor
+        function buscarElem(miMatriz, elemento){
+            let resul = null;
+            let enc = false;
+            let nFilas = miMatriz.length;
+            let i = 0;
+            let fila;
+            let nElem;
+            let j;
+            while((!enc)&&(i < nFilas)){
+                fila = miMatriz[i];
+                nElem = fila.length;
+                j = 0;
+                while((!enc)&&(j < nElem)){
+                    if(fila[j]===elemento){
+                        enc = true
+                    }else{
+                        j++;
+                    }
+                }   
+                
+                if(!enc) i++
+            }
+            if(enc){
+                const Coordenadas = {
+                    fila: null,
+                    columna: null
+                }
+                Coordenadas.fila = i;
+                Coordenadas.columna = j;
+                resul = Coordenadas;
+            }
+
+            return resul;
+        }
+        let busc = buscarElem(ar2,18);
+        if(busc){
+            console.table(busc);
+        }else{
+            console.log("Elemento no encontrado.");
+        }
+
+        //Función que busca en un vector un elemento
+        function buscaElemV(vector, elemento){
+            let resul = null;
+            let enc = false;
+            let n = vector.length;
+            let i = 0; 
+            while((!enc)&&(i < n)){
+                console.log("->" + vector[i]);
+                if(vector[i]===elemento){
+                    enc = true;
+                    resul = i;
+                }else{
+                    i++;
+                }
+            }
+            return resul;
+        }
+
+        function buscaElemM(matriz, elemento){
+            let resul = null;
+            let enc = false;
+            let i = 0;
+            let n = matriz.length;
+            let fila;
+            let r;
+            while((!enc)&&(i < n)){
+                fila = matriz[i];
+                r = buscaElemV(fila, elemento);
+                if(r!=null){
+                    enc = true;
+                    const coor = {};
+                    coor.fila = i;
+                    coor.columna = r;
+                    resul = coor;
+                }else{
+                    i++;
+                }
+            }
+
+            return resul;
+        }
+        console.log("----------------------");
+        let lug = buscaElemM(ar2, "Juan");
+        if(lug)
+            console.table(lug);
+        else    
+            console.log("Elemento no encontrado.");
+
+        console.log("---------------------- INTERCAMBIA--------------------");
+        function intercambia(matriz, e1, e2){
+           let resul = false;
+           let elem1 = buscaElemM(matriz, e1);     
+           let elem2;
+           if(elem1 !=null){
+              elem2 = buscaElemM(matriz, e2);
+              if(elem2!=null){
+                 //Ambos elementos existen y, por tanto, pueden intercambiarse
+                 resul = true;
+                 let aux = matriz[elem2.fila][elem2.columna];
+                 matriz[elem2.fila][elem2.columna] = matriz[elem1.fila][elem1.columna];
+                 matriz[elem1.fila][elem1.columna] = aux;
+              }
+           }
+           return resul;
+        };
+
+     let inter = intercambia(ar2, "Ana", "Miguel");
+     if(inter){
+        console.log("Los datos se han intercambiado con éxito.");
+        console.table(ar2);
+     }else{
+        console.log("Error al intentar intercambiar los datos.");
+     }
+        
+    
+
+
+    </script>
+</body>
+</html>
