@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio</title>
+    <style>
+        article{ border:1px solid black;width: 100px;}
+        section{ border:3px solid black; padding: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Ejercicio de añadir elementos</h1>
+    <br/>
+    <br/>
+    <p>Se desea automatizar la creación de tarjetas creadas con article de forma que se le pase como parámetro una clave que será única ya que es la del producto, y un nombre de producto</p>
+    <p>Una vez creada la función, esta se va a probar creando varios elementos y añadiéndoselos a un section.</p> 
+    <br/>
+    <br/>
+    <br/>
+    <section id="seccion"></section>
+
+    <script>
+        //Paso 1. Creamos la función
+        function creaTarjeta(clave, nombre){
+            let resul = null;
+            clave = clave.trim();
+            nombre = nombre.trim();
+            if((clave !=="")&&(nombre!=="")){
+                resul = document.createElement("article");
+                let p = document.createElement("p");
+                p.textContent = clave;
+                resul.appendChild(p);
+                p = document.createElement("p");
+                p.textContent = nombre;
+                resul.appendChild(p);
+            }
+            return resul;
+        }
+
+        let art = creaTarjeta('1',"CPU I5 3552");
+        if(art!=null) document.getElementById("seccion").appendChild(art);
+
+    </script>
+
+</body>
+</html>
