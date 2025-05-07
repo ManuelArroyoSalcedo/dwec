@@ -5,8 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejercicio</title>
     <style>
-        article{ border:1px solid black;width: 100px;}
-        section{ border:3px solid black; padding: 5px; }
+        article{ border:1px solid red;
+                 width: 100px; 
+                 margin: 3px;
+                 padding-left: 10px;
+                }
+
+        section{ border:3px solid black; 
+                 padding: 5px;   
+                 display: flex;
+                 flex-wrap: wrap;
+                }
     </style>
 </head>
 <body>
@@ -40,6 +49,22 @@
 
         let art = creaTarjeta('1',"CPU I5 3552");
         if(art!=null) document.getElementById("seccion").appendChild(art);
+
+        //Cargamos datos desde un JSON
+        const datosJson = `[
+            {"id": "2", "nombre": "RAM DDR2 2GB"},
+            {"id": "3", "nombre": "RAM DDR2 4GB"},
+            {"id": "4", "nombre": "HDD 3,5 500GB"},
+            {"id": "5", "nombre": "SSD 500GB"}
+        ]`;
+
+        let datos = JSON.parse(datosJson);
+        for(let i = 0; i < datos.length;i++) {
+            //Asumimos que los datos son correctos
+            let art = creaTarjeta(datos[i]['id'], datos[i]['nombre']);
+            if(art!=null) document.getElementById("seccion").appendChild(art);
+        }
+
 
     </script>
 
