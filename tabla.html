@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla</title>
+    <style>
+        table{
+            border: 1px solid black;
+        }
+        tr{
+            border: 1px solid green;
+        }
+        td{
+            border: 1px solid red;
+        }
+        th{
+            border: 2px dotted navy;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Ejercicio Tabla</h1>
+    <br/>
+    <br/>
+    <br/>
+
+    <table>
+        <tr>
+            <th>Lunes</th>
+            <th>MArtes</th>
+        </tr>
+        <tr>
+            <td>hjhjkh</td>
+            <td>hjhjkh</td>
+        </tr>
+        <tr>
+            <td>hjhjkh</td>
+            <td>hjhjkh</td>
+        </tr>
+        <tr>
+            <td>hjhjkh</td>
+            <td>hjhjkh</td>
+        </tr>
+    </table>
+    <br/>
+    
+    <script src="tabla.js"></script>
+
+    <script>
+        //Ejercicio 1
+        const datos = ["Lunes", "Martes", "Miércoles", "Jueves","Viernes","Sábado","Domingo"];
+        const tabla1 = creaTABLE01(datos);
+        if(tabla1!= null){
+            document.getElementsByTagName("body")[0].appendChild(tabla1);
+        }else{
+            console.log("No se ha devuelto la tabla.");
+        }
+
+document.getElementsByTagName("body")[0].appendChild(document.createElement("br"));
+
+        //Ejercicio 2
+        const cabecera = ["Lunes", "Martes", "Miércoles", "Jueves","Viernes","Sábado","Domingo"];
+        const datos2 = ["lunes", "martes", "miércoles", "jueves","viernes","sábado","domingo"];
+        const tabla2 = creaTABLE02(cabecera,datos2);
+        if(tabla2!= null){
+            document.getElementsByTagName("body")[0].appendChild(tabla2);
+        }else{
+            console.log("No se ha devuelto la tabla2.");
+        }
+
+
+    </script>
+
+</body>
+</html>
