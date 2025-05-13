@@ -86,6 +86,27 @@ document.getElementsByTagName("body")[0].appendChild(document.createElement("br"
         }
 
 
+        //Ejercicio 4. Al hacer clic en la tabla, cuandos se haga sobre los datos (td),
+        // nos debe devolver el contenido del td
+
+        tabla3.addEventListener("click", (evt)=>{
+            let miTd = evt.target.closest("td");
+            if(miTd!=null) alert(miTd.textContent);
+        });
+
+document.getElementsByTagName("body")[0].appendChild(document.createElement("br"));
+
+
+        dameVector(2025, 5);
+
+        const tablaCalen = dameTablaMes(2025, 5);
+
+
+        if(tablaCalen!= null){
+            document.getElementsByTagName("body")[0].appendChild(tablaCalen);
+        }else{
+            console.log("No se ha devuelto la tablaCalen.");
+        }
 
     </script>
 
