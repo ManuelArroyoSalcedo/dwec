@@ -69,6 +69,22 @@ document.getElementsByTagName("body")[0].appendChild(document.createElement("br"
         }else{
             console.log("No se ha devuelto la tabla2.");
         }
+document.getElementsByTagName("body")[0].appendChild(document.createElement("br"));
+
+        //Ejercicio 3
+        //const cabecera = ["Lunes", "Martes", "Miércoles", "Jueves","Viernes","Sábado","Domingo"];
+        const datos3 = [
+                       ["lunes", "martes", "miércoles", "jueves","viernes","sábado","domingo"],
+                       ["lunes1", "martes1", "miércoles1", "jueves1","viernes1","sábado1","domingo1"],
+                       ["lunes2", "martes2", "miércoles2", "jueves2","viernes2","sábado2","domingo2"]
+                    ]
+        const tabla3 = creaTABLE03(cabecera,datos3);
+        if(tabla3!= null){
+            document.getElementsByTagName("body")[0].appendChild(tabla3);
+        }else{
+            console.log("No se ha devuelto la tabla3.");
+        }
+
 
 
     </script>

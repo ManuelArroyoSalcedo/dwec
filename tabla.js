@@ -60,3 +60,40 @@ function creaTABLE02(cabecera, datos){
     //Paso 4. Devolvemos el objeto tabla
     return table;
 }
+
+
+
+//Ejercicio 3. 
+//Que los datos sean una matriz, no un vector.
+//Nivel Avanzado
+
+//función auxiliar que se le pasa un vector de datos y devuelve un tr con datos (td) o cabecera (th)
+function dameFilaDatos(tipo, vectordatos){
+   const tr = document.createElement("tr");
+   let td;
+    for(let i = 0; i < vectordatos.length;i++){
+        td = document.createElement(tipo);
+        td.textContent = vectordatos[i];
+        tr.appendChild(td);
+    }
+
+   return tr;
+}
+
+function creaTABLE03(cabecera, datos){
+    //Paso 1. Creamos el objeto table
+    const table = document.createElement("table");
+    
+     
+    //Paso 2. Añado cabecera
+    table.appendChild(dameFilaDatos("th",cabecera));
+
+    //Paso 3. Añado datos
+    let nfila = datos.length;
+    for(let i = 0; i < nfila; i++){
+        table.appendChild(dameFilaDatos("td",datos[i]));
+    }
+
+    //Paso 4. Devolvemos el objeto tabla
+    return table;
+}
