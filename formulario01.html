@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forumlarios</title>
+</head>
+<body>
+    <h1>Trabajo con formularios 01</h1>
+    <br/>
+    <br/>
+    <br/>
+
+    <form id="formul" name="datos" method="post" action="formu.php">
+        <table border = "1">
+            <tr><td colspan="2">
+                <input type="text" name="nombre" id="nombre" value="Ana" />
+            </td></tr>
+            <tr><td colspan="2">
+                <input type="text" name="apellidos" id="apellidos" value="Sánchez López" />
+            </td></tr>
+            
+            <tr>
+                <td>
+                   <input type="text" name="numhijos" id="numhijos" value="0" />
+                </td>
+                <td>
+                   <input type="button"  id="genehijo" value="Genera inputs" />
+                </td>
+            </tr>
+            <tr><td colspan="2"><div id="hijos"></div></td></tr>
+            <tr><td colspan="2" align="center">
+                <input type="button" id="boton" value="Púlsame si te atreves" />
+            </td></tr>
+        </table>
+    </form>
+
+    <script>
+        const formu = document.getElementById("formul");
+        const nombre = document.getElementById("nombre");
+        const apellidos = document.getElementById("apellidos");
+
+        console.log("Nombre: "+formu.name);
+
+        console.log("¿Cuántos elementos tiene el formulario? EL formulario tiene: " + formu.length);
+
+        //Añadimos el listener al botón
+        document.getElementById("boton").addEventListener("click", ()=>{
+            const nElemen = formu.length; //Guardamos el número de controles que tiene el formulario
+
+            console.log("Nombre-> Valor original: "+nombre.getAttribute("value")+" ; Nuevo valor: " + nombre.value);
+
+            console.log("----------------");
+            const elem = formu.elements;
+            console.log(elem.length);
+            for(let i = 0; i < elem.length; i++){
+                console.log(elem[i].tagName + " - " + elem[i].type+ "---" + elem[i].value);
+            }
+
+
+        });
+    </script>
+
+</body>
+</html>
