@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .estilo {
+            border: 1px solid rgb(12, 144, 43)
+
+        };
+    </style>
+</head>
+<body>
+    <h1>Creación de elementos</h1>
+    <br/>
+    <br/>
+    <br/>
+
+
+    <script>
+        let ul = document.createElement("ul");
+
+        let li = document.createElement("li");
+        li.textContent = "Lunes";
+        ul.appendChild(li);
+
+        li = document.createElement("li");
+        li.textContent = "Lunes";
+        ul.appendChild(li);
+
+        li = document.createElement("li");
+        li.textContent = "Martes";
+        ul.appendChild(li);
+
+        li = document.createElement("li");
+        li.textContent = "Miércoles";
+        ul.appendChild(li);
+
+        li = document.createElement("li");
+        li.textContent = "Jueves";
+        ul.appendChild(li);
+
+        li = document.createElement("li");
+        li.textContent = "Viernes";
+        ul.appendChild(li);
+
+        document.getElementsByTagName("body")[0].appendChild(ul);
+
+    </script>
+    
+
+    <script>
+        let sec = document.createElement("section"); 
+        let arti = document.createElement("article");
+       
+        let pa = document.createElement("p");
+        pa.textContent = "Juanito";
+        arti.appendChild(pa);
+
+        pa = document.createElement("p");
+        pa.textContent = "ABX1458";
+        arti.appendChild(pa);
+
+        arti.style.borderWidth = "1px";
+        arti.style.borderColor = "blue";
+        arti.style.borderStyle = "solid";
+
+        sec.appendChild(arti);
+
+        arti = document.createElement("article");
+       
+        pa = document.createElement("p");
+        pa.textContent = "Fernandito";
+        arti.appendChild(pa);
+
+        pa = document.createElement("p");
+        pa.textContent = "DERT4587";
+        arti.appendChild(pa);
+
+        arti.style.cssText = "border: 1px solid red";
+
+        sec.appendChild(arti);
+        
+        sec.classList.add("estilo");
+        document.getElementsByTagName("body")[0].appendChild(sec);
+
+
+
+    </script>
+</body>
+</html>

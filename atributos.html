@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba de atributos</title>
+</head>
+<body>
+    <h1>Prueba de atributos</h1>
+    <br/>
+    <br/>
+    <br/>
+
+
+    <script>
+        let td = document.createElement("td");
+        td.textContent = "Madrid";
+        let tr = document.createElement("tr");
+        tr.appendChild(td);
+
+        td = document.createElement("td");
+        td.textContent = "Sevilla";
+        tr.appendChild(td);
+
+        let tabla = document.createElement("table");
+        tabla.appendChild(tr);
+
+        //Añadimos el atributo border
+        tabla.setAttribute("border", "1");
+
+        document.getElementsByTagName("body")[0].appendChild(tabla);
+    </script>
+    
+</body>
+</html>
